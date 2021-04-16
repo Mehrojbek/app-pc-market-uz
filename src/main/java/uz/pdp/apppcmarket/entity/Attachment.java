@@ -11,18 +11,20 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name","category_id"}))
-public class Category {
+public class Attachment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "name should not be null")
-    @Column(nullable = false,unique = true)
+    private String originalName;
+
     private String name;
 
-    @OneToOne
-    private Category category;
+    private String contentType;
 
-    private boolean active=true;
+    private Long size;
+
+    @NotNull(message = "product should not be null")
+    @ManyToOne
+    private Product product;
 }

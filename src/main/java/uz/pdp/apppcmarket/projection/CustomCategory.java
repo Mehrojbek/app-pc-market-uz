@@ -11,4 +11,6 @@ public interface CustomCategory {
     String getName();
 
     boolean getActive();
+
+    Category getCategory();
 }

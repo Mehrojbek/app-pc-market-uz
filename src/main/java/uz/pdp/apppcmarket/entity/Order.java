@@ -11,18 +11,16 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name","category_id"}))
-public class Category {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "name should not be null")
-    @Column(nullable = false,unique = true)
-    private String name;
-
+    @NotNull(message = "basket should not be null")
     @OneToOne
-    private Category category;
+    private Basket basket;
 
-    private boolean active=true;
+    @NotNull(message = "customer should not be null")
+    @OneToOne
+    private Customer customer;
 }
