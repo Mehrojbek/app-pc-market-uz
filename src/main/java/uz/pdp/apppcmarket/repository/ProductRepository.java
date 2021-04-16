@@ -7,6 +7,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import uz.pdp.apppcmarket.entity.Product;
 import uz.pdp.apppcmarket.projection.CustomProduct;
 
+
 import java.util.*;
 
 @RepositoryRestResource(path = "product",excerptProjection = CustomProduct.class)
@@ -17,5 +18,8 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
             "join property pr on ch.id=pr.characteristic_id where pr.name=:name",
             nativeQuery = true)
     List<Product> getAllByProperty(String name);
+
+    @RestResource(path = "byPrice")
+    List<Product> findAllByPriceBetween(Double from, Double to);
 
 }
